@@ -1,17 +1,57 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: '',
+            todos: [
+                {id: 1, title: "menage", done: false},
+                {id: 2, title: "repassage", done: false}
+            ],
+        };
+        this.addElement = this.addElement.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+    addElement() {
+        console.log("test");
+        let newTodo = {
+            id: Date.now(),
+            title: this.state.value,
+            done: false,
+        }
+        this.setState(prevState => ({
+            todos: [...prevState.todos, newTodo],
+        }));
+    }
+
+    render() {
+        return <div>
+            <form onSubmit={this.addElement}>
+                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                <input type="submit" />
+            </form>
+            <ul>
+                {this.state.todos.map(todo => {
+                    return (
+                        <li key={todo.id}>{todo.title}</li>
+                    )
+                })}
+            </ul>
+        </div>
+    }
+}
+
+
+ReactDom.render(
+    <Counter />,
+    document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
