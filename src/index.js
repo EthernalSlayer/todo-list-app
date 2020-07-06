@@ -14,15 +14,16 @@ class Counter extends React.Component {
         };
         this.addElement = this.addElement.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
+        this.removeElement = this.removeElement.bind(this);
+        this.changeStatus = this.changeStatus.bind(this);
     }
 
     handleChange(event) {
         this.setState({value: event.target.value});
     }
 
-    addElement() {
-        console.log("test");
+    addElement(event) {
+        event.preventDefault();
         let newTodo = {
             id: Date.now(),
             title: this.state.value,
@@ -31,6 +32,29 @@ class Counter extends React.Component {
         this.setState(prevState => ({
             todos: [...prevState.todos, newTodo],
         }));
+    }
+
+    removeElement(event) {
+        console.log(event.target.value)
+        this.setState({
+            todos: this.state.todos.filter(todo => todo.id != event.target.value )
+        });
+    }
+
+    changeStatus(event) {
+        console.log(event.target.value)
+        const el = event.target.value;
+        this.setState(prevState => {
+            return {
+                todos: prevState.todos.map(todo => {
+                    if(el == todo.id) {
+                        return {...todo, done: !todo.done};
+                    } else {
+                        return {...todo, done: todo.done};
+                    }
+                })
+            };
+        });
     }
 
     render() {
@@ -42,7 +66,20 @@ class Counter extends React.Component {
             <ul>
                 {this.state.todos.map(todo => {
                     return (
-                        <li key={todo.id}>{todo.title}</li>
+                        <li 
+                            key={todo.id}>
+                            <input type="checkbox"
+                            value={todo.id}
+                            onChange={this.changeStatus} 
+                        />
+                            {todo.title}
+                            <button 
+                            value={todo.id} 
+                            onClick={this.removeElement}
+                            >
+                                Remove
+                            </button>
+                        </li>
                     )
                 })}
             </ul>
