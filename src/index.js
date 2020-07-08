@@ -34,13 +34,16 @@ class TodoList extends React.Component {
         }
         this.setState(prevState => ({
             todos: [...prevState.todos, newTodo],
+            filterTodos: [...prevState.todos, newTodo],
+            value: "",
         }));
     }
 
     removeElement(event) {
         console.log(event.target.value)
         this.setState({
-            todos: this.state.todos.filter(todo => todo.id != event.target.value )
+            todos: this.state.todos.filter(todo => todo.id != event.target.value ),
+            filterTodos : this.state.filterTodos.filter(todo => todo.id != event.target.value )
         });
     }
 
