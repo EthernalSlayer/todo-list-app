@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import './index.css';
 
-class Counter extends React.Component {
+class TodoList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,6 +16,9 @@ class Counter extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.removeElement = this.removeElement.bind(this);
         this.changeStatus = this.changeStatus.bind(this);
+        this.doneList = this.doneList.bind(this);
+        this.todoList = this.todoList.bind(this);
+        this.allList = this.allList.bind(this);
     }
 
     handleChange(event) {
@@ -57,16 +60,37 @@ class Counter extends React.Component {
         });
     }
 
+    doneList() {
+        this.setState({
+            filterTodos: this.state.todos.filter(item => item.done != false)
+        });
+    }
+
+    todoList() {
+        this.setState({
+            filterTodos: this.state.todos.filter(item => item.done == false)
+        });
+    }
+
+    allList() {
+        this.setState({
+            filterTodos: null
+        })
+    }
+
     render() {
+        console.log(this.state.filterTodos);
+        const test = this.state.filterTodos != null ? this.state.filterTodos : this.state.todos;
         return <div>
             <form onSubmit={this.addElement}>
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
                 <input type="submit" />
             </form>
             <ul>
-                {this.state.todos.map(todo => {
+                {test.map(todo => {
                     return (
                         <li 
+                            className={todo.done == true ? 'done' : 'todo'}
                             key={todo.id}>
                             <input type="checkbox"
                             value={todo.id}
@@ -83,12 +107,15 @@ class Counter extends React.Component {
                     )
                 })}
             </ul>
+            <button onClick={this.doneList}>Done</button>
+            <button onClick={this.todoList}>Todo</button>
+            <button onClick={this.allList}>All</button>
         </div>
     }
 }
 
 
 ReactDom.render(
-    <Counter />,
+    <TodoList />,
     document.getElementById('root')
 );
