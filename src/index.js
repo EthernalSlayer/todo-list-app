@@ -11,6 +11,7 @@ class TodoList extends React.Component {
                 {id: 1, title: "menage", done: false},
                 {id: 2, title: "repassage", done: false}
             ],
+            filterTodos: null,
         };
         this.addElement = this.addElement.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -40,11 +41,14 @@ class TodoList extends React.Component {
     }
 
     removeElement(event) {
-        console.log(event.target.value)
         this.setState({
             todos: this.state.todos.filter(todo => todo.id != event.target.value ),
-            filterTodos : this.state.filterTodos.filter(todo => todo.id != event.target.value )
         });
+        if (this.state.filterTodos != null) {
+            this.setState({
+                filterTodos : this.state.filterTodos.filter(todo => todo.id != event.target.value),
+            });
+        }
     }
 
     changeStatus(event) {
@@ -53,6 +57,13 @@ class TodoList extends React.Component {
         this.setState(prevState => {
             return {
                 todos: prevState.todos.map(todo => {
+                    if(el == todo.id) {
+                        return {...todo, done: !todo.done};
+                    } else {
+                        return {...todo, done: todo.done};
+                    }
+                }),
+                filterTodos: prevState.todos.map(todo => {
                     if(el == todo.id) {
                         return {...todo, done: !todo.done};
                     } else {
@@ -97,15 +108,15 @@ class TodoList extends React.Component {
     }
 
     render() {
-        //console.log(button.className);
         const test = this.state.filterTodos != null ? this.state.filterTodos : this.state.todos;
         return <div className='appContainer'>
+                <h1 className='appTitle'>React TodoList</h1>
                 <div className='mainContainer'>
                 <form className="taskBarContainer" onSubmit={this.addElement}>
                     <input className="taskBar" type="text" value={this.state.value} onChange={this.handleChange} />
-                    <input type="submit" />
+                    <input className="taskBarButton" type="submit" />
                 </form>
-                <ul>
+                <ul className="listContainer">
                     {test.map(todo => {
                         return (
                             <li 
@@ -116,11 +127,12 @@ class TodoList extends React.Component {
                                 onChange={this.changeStatus} 
                             />
                                 {todo.title}
-                                <button 
+                                <button
+                                className="removeButton" 
                                 value={todo.id} 
                                 onClick={this.removeElement}
                                 >
-                                    Remove
+                                    X
                                 </button>
                             </li>
                         )

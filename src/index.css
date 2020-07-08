@@ -1,6 +1,8 @@
 body {
     font-size: 30px;
-    background-color: red;
+    
+    background-image: url("./wood-pattern.png");
+    background-color: #211b1b;
 }
 
 button {
@@ -11,21 +13,69 @@ input {
     font-size: 0.8em;
 }
 
+.listContainer {
+    width: 30%;
+}
+
 .todo {
-    color: red;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #B00000;
+    color: black;
     list-style: none;
 }
 
 .done {
-    text-decoration: line-through;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #B00000;
+    color: black;
     list-style: none;
+    text-decoration: line-through;
 }
 
-.appContainer {
-    display: flex;
-    height: 100vh;
-    align-items: center;
+.done .removeButton {
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
 
+.todo .removeButton {
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+.done .notActive {
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+.todo .notActive {
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+
+
+.appContainer {
+    height: 100vh;
+}
+
+.appTitle {
+    color: #B00000;
+    text-align: center;
+    text-shadow: 2px 1px 0 white;
 }
 
 .mainContainer {
@@ -38,8 +88,39 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: #312D2D;
+    border: 3px solid #B00000;
+    box-shadow: 3px 5px 2px #000000;
 
+}
+
+.taskBarContainer {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+}
+
+.taskBar {
+    width: 60%;
+    box-shadow: 3px 5px 2px #000000;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.taskBarButton {
+    box-shadow: 3px 5px 2px #000000;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+    background-color: black;
+    color: white;
+}
+
+.taskBarButton:active {
+    background-color: #B00000;
+    color: black;
 }
 
 .buttonContainer {
@@ -52,14 +133,22 @@ input {
     margin-left: 2%;
     padding: 1%;
     border-radius: 10px;
-    border: none;
-    background-color: yellow;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+    background-color: #B00000;
+    box-shadow: 3px 5px 2px #000000;
 }
 
 .buttonContainer button:hover {
-    background-color: blue;
+    background-color: black;
+    color: white;
 }
 
 .buttonContainer button.isActive {
-    background-color: blue;
+    background-color: black;
+    color: white;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
 }
