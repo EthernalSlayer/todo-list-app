@@ -72,12 +72,22 @@ class TodoList extends React.Component {
     }
 
     todoList() {
+        const buttons = document.getElementsByTagName('button');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].className = 'notActive';
+        }
+        event.target.className = 'isActive';
         this.setState({
             filterTodos: this.state.todos.filter(item => item.done == false)
         });
     }
 
     allList() {
+        const buttons = document.getElementsByTagName('button');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].className = 'notActive';
+        }
+        event.target.className = 'isActive';
         this.setState({
             filterTodos: null
         })
