@@ -60,7 +60,8 @@ class TodoList extends React.Component {
         });
     }
 
-    doneList() {
+    doneList(event) {
+        event.target.className = 'isActive';
         this.setState({
             filterTodos: this.state.todos.filter(item => item.done != false)
         });
@@ -79,37 +80,41 @@ class TodoList extends React.Component {
     }
 
     render() {
-        console.log(this.state.filterTodos);
+        //console.log(button.className);
         const test = this.state.filterTodos != null ? this.state.filterTodos : this.state.todos;
-        return <div>
-            <form onSubmit={this.addElement}>
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
-                <input type="submit" />
-            </form>
-            <ul>
-                {test.map(todo => {
-                    return (
-                        <li 
-                            className={todo.done == true ? 'done' : 'todo'}
-                            key={todo.id}>
-                            <input type="checkbox"
-                            value={todo.id}
-                            onChange={this.changeStatus} 
-                        />
-                            {todo.title}
-                            <button 
-                            value={todo.id} 
-                            onClick={this.removeElement}
-                            >
-                                Remove
-                            </button>
-                        </li>
-                    )
-                })}
-            </ul>
-            <button onClick={this.doneList}>Done</button>
-            <button onClick={this.todoList}>Todo</button>
-            <button onClick={this.allList}>All</button>
+        return <div className='appContainer'>
+                <div className='mainContainer'>
+                <form className="taskBarContainer" onSubmit={this.addElement}>
+                    <input className="taskBar" type="text" value={this.state.value} onChange={this.handleChange} />
+                    <input type="submit" />
+                </form>
+                <ul>
+                    {test.map(todo => {
+                        return (
+                            <li 
+                                className={todo.done == true ? 'done' : 'todo'}
+                                key={todo.id}>
+                                <input type="checkbox"
+                                value={todo.id}
+                                onChange={this.changeStatus} 
+                            />
+                                {todo.title}
+                                <button 
+                                value={todo.id} 
+                                onClick={this.removeElement}
+                                >
+                                    Remove
+                                </button>
+                            </li>
+                        )
+                    })}
+                </ul>
+                <div className="buttonContainer">
+                    <button className="notActive" onClick={this.doneList}>Done</button>
+                    <button className="notActive" onClick={this.todoList}>Todo</button>
+                    <button className="notActive" onClick={this.allList}>All</button>
+                </div>
+            </div>
         </div>
     }
 }
