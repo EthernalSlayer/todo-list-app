@@ -61,6 +61,10 @@ class TodoList extends React.Component {
     }
 
     doneList(event) {
+        const buttons = document.getElementsByTagName('button');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].className = 'notActive';
+        }
         event.target.className = 'isActive';
         this.setState({
             filterTodos: this.state.todos.filter(item => item.done != false)

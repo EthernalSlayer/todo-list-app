@@ -60,3 +60,6 @@ input {
     background-color: blue;
 }
 
+.buttonContainer button.isActive {
+    background-color: blue;
+}
