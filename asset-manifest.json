@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/todo-list-app/static/css/main.a4ea03fa.chunk.css",
+    "main.js": "/todo-list-app/static/js/main.dfec4530.chunk.js",
+    "main.js.map": "/todo-list-app/static/js/main.dfec4530.chunk.js.map",
+    "runtime-main.js": "/todo-list-app/static/js/runtime-main.d4521ec4.js",
+    "runtime-main.js.map": "/todo-list-app/static/js/runtime-main.d4521ec4.js.map",
+    "static/js/2.f469225c.chunk.js": "/todo-list-app/static/js/2.f469225c.chunk.js",
+    "static/js/2.f469225c.chunk.js.map": "/todo-list-app/static/js/2.f469225c.chunk.js.map",
+    "index.html": "/todo-list-app/index.html",
+    "precache-manifest.59079ad7b590a9f234f70c3e14b0c295.js": "/todo-list-app/precache-manifest.59079ad7b590a9f234f70c3e14b0c295.js",
+    "service-worker.js": "/todo-list-app/service-worker.js",
+    "static/css/main.a4ea03fa.chunk.css.map": "/todo-list-app/static/css/main.a4ea03fa.chunk.css.map",
+    "static/js/2.f469225c.chunk.js.LICENSE.txt": "/todo-list-app/static/js/2.f469225c.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/todo-list-app/static/media/wood-pattern.02464a71.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d4521ec4.js",
+    "static/js/2.f469225c.chunk.js",
+    "static/css/main.a4ea03fa.chunk.css",
+    "static/js/main.dfec4530.chunk.js"
+  ]
+}
