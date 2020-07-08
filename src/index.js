@@ -71,7 +71,7 @@ class TodoList extends React.Component {
         });
     }
 
-    todoList() {
+    todoList(event) {
         const buttons = document.getElementsByTagName('button');
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].className = 'notActive';
@@ -82,7 +82,7 @@ class TodoList extends React.Component {
         });
     }
 
-    allList() {
+    allList(event) {
         const buttons = document.getElementsByTagName('button');
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].className = 'notActive';
